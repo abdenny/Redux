@@ -1,73 +1,65 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Form, Col } from 'react-bootstrap'
-
+import { Form, Col } from 'react-bootstrap';
 
 class AddProject extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+  }
 
-    }
+  handleSubmit = (e) => {
+    // console.log(this.refs.title.value);
 
-    handleSubmit = (e) => {
+    // console.log(this.refs.category.value)
 
-        // console.log(this.refs.title.value);
+    e.preventDefault();
 
-        // console.log(this.refs.category.value)
+    this.props.addProject({
+      id: uuidv4(),
+      title: this.refs.title.value,
+      category: this.refs.category.value,
+    });
+  };
 
-        e.preventDefault();
+  render() {
+    return (
+      <>
+        <h3>Add Project</h3>
 
-        this.props.addProject({
-            id: uuidv4(),
-            title: this.refs.title.value,
-            category: this.refs.category.value
-        })
-    }
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <Form.Group>
+              <Form.Row>
+                <Col>
+                  <Form.Control
+                    size='lg'
+                    ref='title'
+                    type='text'
+                    placeholder='Title'
+                  />
+                </Col>
+              </Form.Row>
+              <br />
+            </Form.Group>
+          </div>
 
+          <div>
+            <Form>
+              <Form.Group controlId='exampleForm.SelectCustom'>
+                <Form.Label>Category</Form.Label>
+                <Form.Control as='select' size='lg' custom ref='category'>
+                  <option value='Front-End'>Front-End</option>
+                  <option value='Beck-End'>Back-End</option>
+                </Form.Control>
+              </Form.Group>
+            </Form>
+          </div>
 
-    render() {
-        return (
-            <>
-
-                <h3>Add Project</h3>
-
-                <form onSubmit={this.handleSubmit}>
-
-                    <div>
-
-                        <Form.Group>
-                            <Form.Row>
-
-                                <Col>
-                                    <Form.Control size="lg" ref="title" type="text" placeholder="Title" />
-                                </Col>
-                            </Form.Row>
-                            <br />
-
-                        </Form.Group>
-                    </div>
-
-
-                    <div>
-
-                        <Form>
-                            <Form.Group controlId="exampleForm.SelectCustom">
-                                <Form.Label >Category</Form.Label>
-                                <Form.Control as="select" size="lg" custom ref="category">
-                                    <option value="Front-End">Front-End</option>
-                                    <option value="Beck-End">Back-End</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Form>
-
-                    </div>
-
-                    <input className="buttonStyle" type="submit" value="submit" />
-                </form>
-            </>
-        );
-    }
+          <input className='buttonStyle' type='submit' value='submit' />
+        </form>
+      </>
+    );
+  }
 }
 
-
-export default AddProject
+export default AddProject;

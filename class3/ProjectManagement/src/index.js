@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import BaseLayout from './layout/BaseLayout';
+import ProjectManagement from './components/projectManagement/ProjectManagement';
+//Installing Redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './App';
-import BaseLayout from './layout/BaseLayout';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ProjectManagement from './components/projectManagement/ProjectManagement';
-import Reducer from './reducers/reducer';
+
+//importing in reducer to pass to the store
+import reducer from './reducers/reducer';
+
+//testing things out
+import addProject from './actions/addProject';
 
 let store = createStore(
-  Reducer,
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -20,11 +25,7 @@ ReactDOM.render(
       <BaseLayout>
         <Switch>
           <Route exact path='/' component={App} />
-          <Route
-            exact
-            path='/projectmanagement'
-            component={ProjectManagement}
-          />
+          <Route path='/projectmanagement' component={ProjectManagement} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>

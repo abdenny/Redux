@@ -1,6 +1,4 @@
-let Reducer = (state, action) => {
-  //check if state exists
-
+let projectReducer = (state, action) => {
   if (state === undefined) {
     state = {
       projects: [
@@ -36,4 +34,4 @@ let Reducer = (state, action) => {
   }
 };
 
-export default Reducer;
+export default projectReducer;
