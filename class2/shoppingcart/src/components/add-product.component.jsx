@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import addProduct from '../actions/add-product.action';
+import './styles.css';
 
 class AddProduct extends Component {
   constructor(props) {
@@ -37,6 +38,11 @@ class AddProduct extends Component {
       productName: this.state.productName,
       productPrice: this.state.productPrice,
     });
+
+    this.setState({
+      productName: '',
+      productPrice: 0,
+    });
   };
 
   render() {
@@ -45,8 +51,9 @@ class AddProduct extends Component {
         Add Product
         <form onSubmit={this.submitProductHandler}>
           <label>Product name</label>
-
+          {this.state.productName}
           <input
+            value={this.state.productName}
             type='text'
             placeholder='ProductName'
             onChange={this.productNameChangeHandler}
@@ -55,6 +62,7 @@ class AddProduct extends Component {
           <label>Product Price</label>
 
           <input
+            value={this.state.productPrice}
             type='number'
             placeholder='product price'
             onChange={this.productPriceChangeHandler}
